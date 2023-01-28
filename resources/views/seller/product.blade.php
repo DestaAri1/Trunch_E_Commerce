@@ -31,10 +31,11 @@
             <div>
 
             <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered overflow-auto" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr style="text-align: center">
                             <th width="50px">No</th>
+                            <th>Gambar</th>
                             <th width="250px">Nama</th>
                             <th width="85px">Stok</th>
                             <th width="175px">Harga</th>
@@ -49,6 +50,9 @@
                         @foreach ($produk as $p)
                         <tr>
                             <td style="text-align: center">{{ $no++ }}</td>
+                            <td>
+                                <img src="/assets/img/{{ $p->img }}" class="img-fluid" alt="">
+                            </td>
                             <td>{{ $p->name }}</td>
                             <td style="text-align: center">{{ $p->stock }}</td>
                             <td style="text-align: center">Rp. {{ $p->price }}</td>

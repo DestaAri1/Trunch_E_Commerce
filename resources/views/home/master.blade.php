@@ -63,8 +63,16 @@
             <div class="user_option_box">
               <a href="{{ route('cart') }}" class="cart-link">
                 <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                <span style="padding-right: 20px">
+                <span>
+                  @if (Auth::check())
+                    @if (count($cart) > 0)
+                    Cart <sup class="circle">{{ count($cart) }}</sup>
+                    @else
                     Cart
+                    @endif
+                  @else
+                  Cart
+                  @endif
                 </span>
               </a>
             </div>
@@ -96,8 +104,6 @@
                 <li class="nav-item">
                   <a class="nav-link" href="{{ route('produk') }}">Products</a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Why Us</a>
                 </li>
                 <li class="nav-item">
                         @guest
@@ -125,8 +131,32 @@
                                         </div>
 
                                         <div class="dropdown-item">
-                                            <a class="fa fa-hand-paper fa-sm fa-fw mr-2" href="{{ route('transaksi') }}">
+                                            <a class="fa fa-archive fa-sm fa-fw mr-2" href="{{ route('transaksi') }}">
+                                                @if (Auth::check())
+                                                @if (count($trans) > 0)
+                                                Transaksi <sup class="circle">{{ count($trans) }}</sup>
+                                                @else
                                                 Transaksi
+                                                @endif
+                                            @else
+                                            Transaksi
+                                            @endif
+                                            </a>
+                                        </div>
+
+                                        <div class="dropdown-item">
+                                            <a href="{{ route('deliver') }}" class="fa fa-send fa-fw">
+                                                @if (count($deliver) > 0)
+                                                Pengiriman <sup class="circle">{{ count($deliver) }}</sup>
+                                                @else
+                                                Pengiriman
+                                                @endif
+                                            </a>
+                                        </div>
+
+                                        <div class="dropdown-item">
+                                            <a href="{{ route('history') }}" class="fa fa-list fa-fw">
+                                                History
                                             </a>
                                         </div>
 
@@ -160,7 +190,31 @@
 
                                         <div class="dropdown-item">
                                             <a class="fa fa-archive fa-fw" href="{{ route('transaksi') }}">
+                                                @if (Auth::check())
+                                                    @if (count($trans) > 0)
+                                                    Transaksi <sup class="circle">{{ count($trans) }}</sup>
+                                                    @else
+                                                    Transaksi
+                                                    @endif
+                                                @else
                                                 Transaksi
+                                                @endif
+                                            </a>
+                                        </div>
+
+                                        <div class="dropdown-item">
+                                            <a href="{{ route('deliver') }}" class="fa fa-send fa-fw">
+                                                @if (count($deliver) > 0)
+                                                Pengiriman <sup class="circle">{{ count($deliver) }}</sup>
+                                                @else
+                                                Pengiriman
+                                                @endif
+                                            </a>
+                                        </div>
+
+                                        <div class="dropdown-item">
+                                            <a href="{{ route('history') }}" class="fa fa-list fa-fw">
+                                                History
                                             </a>
                                         </div>
 

@@ -22,6 +22,12 @@ return new class extends Migration
             $table->enum('status', ['active', 'ban'])->default('active');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->double('nik')->nullable();
+            $table->string('pekerjaan')->nullable();
+            $table->string('ayah')->nullable();
+            $table->string('a_pekerjaan')->nullable();
+            $table->string('ibu')->nullable();
+            $table->string('i_pekerjaan')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

@@ -810,3 +810,17 @@ li div a {
     padding: 0.25em 0.8em;
   }
 
+.circle {
+    background: #fd0000;
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    color: #6e6e6e;
+    display: inline-block;
+    font-weight: bold;
+    line-height: 20px;
+    margin-right: 3px;
+    text-align: center;
+    width: 20px;
+    color: #ffffff;
+}

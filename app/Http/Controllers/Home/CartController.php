@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\cart;
 use App\Models\product;
+use App\Models\Order;
+use App\Models\Deliver;
 
 class CartController extends Controller
 {
@@ -19,7 +21,9 @@ class CartController extends Controller
     public function index(Request $request)
     {
         $cart = cart::where('user_id', Auth::id())->latest()->paginate(100);
-        return view('home.cart', compact('cart'));
+        $trans = Order::where('user_id', Auth::id())->latest()->paginate(99);
+        $deliver = Deliver::where('user_id', Auth::id())->latest()->paginate(99);
+        return view('home.cart', compact('cart', 'trans', 'deliver'));
     }
 
     public function create()

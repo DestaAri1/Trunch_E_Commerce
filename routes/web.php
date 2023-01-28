@@ -8,9 +8,11 @@ use App\Http\Controllers\Home\CartController;
 use App\Http\Controllers\Home\OrderController;
 use App\Http\Controllers\Home\TransactionController;
 use App\Http\Controllers\Home\ProfileController;
+use App\Http\Controllers\Home\DeliverController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Seller\SellerController;
 use App\Http\Controllers\Seller\ProdukController;
+use App\Http\Controllers\Seller\WaitingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,13 +37,23 @@ Route::get('/cart', [CartController::class, 'index'])->name('cart');
 
 Route::get('/Transaction', [TransactionController::class, 'index'])->name('transaksi');
 
+Route::post('transaksi', [TransactionController::class, 'store'])->name('bayar');
+
 Route::post('/product/add_cart/{id}', [CartController::class, 'store'])->name('add_cart');
 
-Route::post('/cart/delete/{id}', [CartController::class, 'destroy'])->name('hapus_cart');
+Route::get('/cart/delete/{id}', [CartController::class, 'destroy'])->name('hapus_cart');
 
 Route::post('checkout', [OrderController::class, 'store'])->name('checkout');
 
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
+
+Route::post('/profile/update/{id}', [ProfileController::class, 'update'])->name('up_profil');
+
+Route::get('/deliver', [DeliverController::class, 'index'])->name('deliver');
+
+Route::post('/deliver/status/{id}', [DeliverController::class, 'store'])->name('selesai');
+
+Route::get('/history', [HomeController::class, 'history'])->name('history');
 
 Route::group(['middleware' => ['auth', 'role:admin']], function(){
     Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('dashboard');
@@ -54,6 +66,8 @@ Route::group(['middleware' => ['auth', 'role:seller']], function() {
     Route::post('/seller/product/delete_product/{id}', [ProdukController::class, 'destroy'])->name('hapus_produk');
     Route::get('/seller/product/edit/{id}', [ProdukController::class, 'edit'])->name('edit_produk');
     Route::resource('produk', ProdukController::class);
+    Route::get('/seller/pesanan', [WaitingController::class, 'index'])->name('pesanan');
+    Route::get('/seller/pesanan/update/{id}', [WaitingController::class, 'update'])->name('upd_pesanan');
 });
 
 Route::group(['middleware' => ['auth', 'role:user']], function() {

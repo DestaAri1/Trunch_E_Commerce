@@ -4,21 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-Use Illuminate\Support\Carbon;
 
-class product extends Model
+class Deliver extends Model
 {
     use HasFactory;
 
-    protected $table = 'products';
+    protected $table = 'delivers';
 
     protected $fillable = [
         'name',
-        'stock',
-        'price',
-        'slug',
         'img',
+        'quantity',
+        'price',
+        'sub_price',
+        'status',
         'user_id',
     ];
-
 }

@@ -25,6 +25,12 @@ class User extends Authenticatable
         'password',
         'level',
         'address',
+        'nik',
+        'pekerjaan',
+        'ayah',
+        'a_pekerjaan',
+        'ibu',
+        'i_pekerjaan',
     ];
 
     /**

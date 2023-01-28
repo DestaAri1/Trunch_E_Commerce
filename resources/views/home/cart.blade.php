@@ -8,6 +8,9 @@
             Keranjang Belanja
           </h2>
         </div>
+        @if (count($cart) == 0)
+        <div class="text-center bold">Maaf anda tidak memiliki list belanjaan</div>
+        @else
         <form action="{{ route('checkout') }}" method="POST">
             @csrf
             <div class="table-responsive">
@@ -37,7 +40,7 @@
                                     {{ $c->name }}
                                     <input type="hidden" name="name[]" id="name[]" value="{{ $c->name }}">
                                 </td>
-                                <td style="text-align: center">
+                                <td>
                                     <input class="form-control" style="width:90px; float:left" type="number" value="1" min="1" name="quantity[]" id="quality[]">
                                 </td>
                                 <td>
@@ -45,10 +48,7 @@
                                     <input type="hidden" name="price[]" id="price[]" value="{{ $c->price }}">
                                 </td>
                                 <td>
-                                    <form action="{{ route('hapus_cart', $c->id) }}" method="POST">
-                                        @csrf
-                                        <button class="btn btn-danger" type="submit" name="submit">Hapus</button>
-                                    </form>
+                                    <a href="{{ route('hapus_cart', $c->id) }}" class="btn btn-danger text-center">Hapus</a>
                                 </td>
                             </tr>
                         @endforeach
@@ -57,6 +57,7 @@
                 <button class="btn btn-success pull-right" type="submit" name="submit">Check Out</button>
             </div>
         </form>
+        @endif
     </div>
 </section>
 @endsection
